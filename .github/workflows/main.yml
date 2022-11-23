@@ -1,11 +1,19 @@
-- name: Katalon Studio
-  # You may pin to the exact commit or the version.
-  # uses: katalon-studio/katalon-studio-github-action@b6f77f389330390acb241cb6f138b1237f523b77
-  uses: katalon-studio/katalon-studio-github-action@v2.2
-  with:
-    # Which version of Katalon Studio to run
-    version: # default is 
-    # Where the Katalon Studio project is checked out
-    projectPath: # default is 
-    # What arguments to run Katalon Studio project
-    args: # default is 
+name: CI
+on:
+  push:
+    branches: main
+  pull_request:
+    branches: main
+
+jobs:
+  build:
+    runs-on: windows-latest
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v2.2
+    - name: Katalon Studio Github Action
+      uses: katalon-studio/katalon-studio-github-action@v2
+      with:
+          version: '8.5.5'
+          projectPath: '${{ github.workspace }}'
+          args: '-noSplash -retry=0 -testSuiteCollectionPath="Test Suites/Simple Test Suite Collection" -apiKey="8820c970-d614-4367-a194-deb8cd1a5a0a" --config -webui.autoUpdateDrivers=true'
