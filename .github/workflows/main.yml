@@ -12,7 +12,7 @@ jobs:
     - name: Checkout
       uses: actions/checkout@testing-1
     - name: Linh To Testing
-      uses: linhtnlK/katalon-studio-github-action@testing-1
+      uses: linhtnlK/katalon-studio-github-action@testing
       with:
           version: '8.5.2'
           projectPath: '${{ github.workspace }}'
